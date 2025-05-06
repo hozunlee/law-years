@@ -1,37 +1,37 @@
 <script lang="ts">
-	import type { LawyerProfile } from '$lib/types/profile';
-	import { Avatar } from '$lib/components/ui/avatar';
-	import { Input } from '$lib/components/ui/input';
-	import { Textarea } from '$lib/components/ui/textarea';
-	import { profileStore } from '$lib/stores/profile';
+	import type { LawyerProfile } from '$lib/types/profile'
+	import { Avatar } from '$lib/components/ui/avatar'
+	import { Input } from '$lib/components/ui/input'
+	import { Textarea } from '$lib/components/ui/textarea'
+	import { profileStore } from '$lib/stores/profile'
 
-	export let profile: LawyerProfile;
+	export let profile: LawyerProfile
 
-	const { updateProfile } = profileStore;
+	const { updateProfile } = profileStore
 
 	// 이미지 업로드 처리 (프로토타입은 로컬 스토리지만 사용)
 	function handleImageUpload(event: Event) {
-		const input = event.target as HTMLInputElement;
-		if (!input.files?.length) return;
+		const input = event.target as HTMLInputElement
+		if (!input.files?.length) return
 
-		const file = input.files[0];
-		const reader = new FileReader();
+		const file = input.files[0]
+		const reader = new FileReader()
 		reader.onload = (e) => {
-			updateProfile({ profileImage: e.target?.result as string });
-		};
-		reader.readAsDataURL(file);
+			updateProfile({ profileImage: e.target?.result as string })
+		}
+		reader.readAsDataURL(file)
 	}
 </script>
 
 <div class="mb-6 flex flex-col items-center">
 	<div class="relative mb-4">
-		<Avatar class="border-primary h-32 w-32 border-2">
-			<img
-				src={profile.profileImage || '/images/placeholder.jpg'}
-				alt={profile.name}
-				class="h-full w-full object-cover"
-			/>
-		</Avatar>
+		<!-- <Avatar class="border-primary h-32 w-32 border-2"> -->
+		<img
+			src={profile.profileImage || '/images/placeholder.jpg'}
+			alt={profile.name}
+			class="h-full w-full object-cover"
+		/>
+		<!-- </Avatar> -->
 
 		{#if profile.isEditMode}
 			<label
