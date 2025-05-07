@@ -7,14 +7,17 @@
 	import ProfileHeader from '$lib/components/profile/ProfileHeader.svelte'
 	import EducationSection from '$lib/components/profile/EducationSection.svelte'
 	import CareerSection from '$lib/components/profile/CareerSection.svelte'
-	// import CertificatesSection from '$lib/components/profile/CertificatesSection.svelte';
-	// import SpecialtiesSection from '$lib/components/profile/SpecialtiesSection.svelte';
+	import CertificatesSection from '$lib/components/profile/CertificatesSection.svelte'
+	import SpecialtiesSection from '$lib/components/profile/SpecialtiesSection.svelte'
+
+	import LinkIcon from '@lucide/svelte/icons/link'
+	import ContactIcon from '@lucide/svelte/icons/contact'
 
 	const { profile, toggleEditMode } = profileStore
 
 	console.log('$profile :>> ', $profile)
 	// 현재 선택된 탭
-	let currentTab = 'profile'
+	let currentTab = $state('profile')
 
 	// 미디어 쿼리 감지 (클라이언트 측에서만 실행)
 	let isDesktop = $state(false)
@@ -166,6 +169,10 @@
 								</div>
 							</div>
 
+							<div class="mt-6 flex w-full space-x-4">
+								<Button class="w-full"><ContactIcon class="mr-2 size-4" />상담하기</Button>
+								<Button class="w-full"><LinkIcon class="mr-2 size-4" />공유하기</Button>
+							</div>
 							{#if $profile.isEditMode}
 								<div class="mt-6">
 									<Button onclick={toggleEditMode} class="w-full">저장하기</Button>
@@ -213,12 +220,12 @@
 
 						<Card class="p-6">
 							<h2 class="mb-4 text-2xl font-semibold">자격</h2>
-							<!-- <CertificatesSection /> -->
+							<CertificatesSection />
 						</Card>
 
 						<Card class="p-6">
 							<h2 class="mb-4 text-2xl font-semibold">전문 분야</h2>
-							<!-- <SpecialtiesSection /> -->
+							<SpecialtiesSection />
 						</Card>
 					</TabsContent>
 
@@ -249,7 +256,10 @@
 {:else}
 	<div class="container mx-auto max-w-md px-4 py-8">
 		<ProfileHeader profile={$profile} />
-
+		<div class="mt-6 flex w-full space-x-4">
+			<Button class="w-full"><ContactIcon class="mr-2 size-4" />상담하기</Button>
+			<Button class="w-full"><LinkIcon class="mr-2 size-4" />공유하기</Button>
+		</div>
 		{#if $profile.isEditMode}
 			<div class="sticky top-0 z-10 mb-4 border-b bg-white py-2 dark:bg-slate-900">
 				<Button onclick={toggleEditMode} class="w-full">저장하기</Button>
@@ -306,12 +316,12 @@
 
 				<Card class="p-4">
 					<h2 class="mb-2 text-xl font-semibold">자격</h2>
-					<!-- <CertificatesSection /> -->
+					<CertificatesSection />
 				</Card>
 
 				<Card class="p-4">
 					<h2 class="mb-2 text-xl font-semibold">전문 분야</h2>
-					<!-- <SpecialtiesSection /> -->
+					<SpecialtiesSection />
 				</Card>
 			</TabsContent>
 

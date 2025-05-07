@@ -1,9 +1,13 @@
 <script lang="ts">
-	import { profileStore } from '$lib/stores/profile';
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
+	import { profileStore } from '$lib/stores/profile'
+	import { Button } from '$lib/components/ui/button'
+	import { Input } from '$lib/components/ui/input'
 
-	const { profile, addEducation, updateEducation, removeEducation } = profileStore;
+	const { profile, addCareer, updateCareer, removeCareer } = profileStore
+
+	function getValue(e: Event) {
+		return (e.target as HTMLInputElement)?.value ?? ''
+	}
 </script>
 
 <div class="space-y-2">
@@ -14,30 +18,33 @@
 					<Input
 						type="text"
 						value={career.organization}
-						onchange={(e) => updateEducation(career.id, { organization: e.target.value })}
+						onchange={(e) => updateCareer(career.id, { organization: getValue(e) })}
 						placeholder="기관/회사명"
 					/>
 					<Input
 						type="text"
 						value={career.position}
-						onchange={(e) => updateEducation(career.id, { position: e.target.value })}
+						onchange={(e) => updateCareer(career.id, { position: getValue(e) })}
 						placeholder="직책"
 					/>
-					<Input
-						type="text"
-						value={career.period}
-						onchange={(e) => updateEducation(career.id, { period: e.target.value })}
-						placeholder="기간 (예: 2020-2022)"
-					/>
+					<div class="flex space-x-2">
+						placeholder="시작일" />
+						<Input
+							type="month"
+							value={career.endDate}
+							onchange={(e) => updateCareer(career.id, { endDate: e.target.value })}
+							placeholder="종료일"
+						/>
+					</div>
 					<div class="flex justify-end space-x-2">
 						<Button
 							variant="outline"
 							size="sm"
-							onclick={() => updateEducation(career.id, { isEditing: false })}
+							onclick={() => updateCareer(career.id, { isEditing: false })}
 						>
 							완료
 						</Button>
-						<Button variant="destructive" size="sm" onclick={() => removeEducation(career.id)}>
+						<Button variant="destructive" size="sm" onclick={() => removeCareer(career.id)}>
 							삭제
 						</Button>
 					</div>
@@ -49,12 +56,16 @@
 						{#if career.position}<div class="text-muted-foreground text-sm">
 								{career.position}
 							</div>{/if}
-						{#if career.period}<div class="text-muted-foreground text-sm">{career.period}</div>{/if}
+						{#if career.startDate || career.endDate}
+							<div class="text-muted-foreground text-sm">
+								{career.startDate} ~ {career.endDate}
+							</div>
+						{/if}
 					</div>
 					<Button
 						variant="ghost"
 						size="sm"
-						onclick={() => updateEducation(career.id, { isEditing: true })}
+						onclick={() => updateCareer(career.id, { isEditing: true })}
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -78,14 +89,18 @@
 					{#if career.position}<div class="text-muted-foreground text-sm">
 							{career.position}
 						</div>{/if}
-					{#if career.period}<div class="text-muted-foreground text-sm">{career.period}</div>{/if}
+					{#if career.startDate || career.endDate}
+						<div class="text-muted-foreground text-sm">
+							{career.startDate} ~ {career.endDate}
+						</div>
+					{/if}
 				</div>
 			{/if}
 		</div>
 	{/each}
 
 	{#if $profile.isEditMode}
-		<Button variant="outline" class="w-full" onclick={addEducation}>
+		<Button variant="outline" class="w-full" onclick={addCareer}>
 			<svg
 				class="mr-2"
 				xmlns="http://www.w3.org/2000/svg"

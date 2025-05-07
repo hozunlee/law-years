@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lucide/svelte':
+        specifier: ^0.508.0
+        version: 0.508.0(svelte@5.28.2)
       uuid:
         specifier: ^11.1.0
         version: 11.1.0
@@ -351,6 +354,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@lucide/svelte@0.508.0':
+    resolution: {integrity: sha512-yJZz7QMP4VvtyHlnjSIvM+DGyeCoZJlWMJJDm9K7op4Vf41Q5kguq25uXH8t9I5y0xT2aWpRlxbpvK9L0K1uRA==}
+    peerDependencies:
+      svelte: ^5
 
   '@mapbox/node-pre-gyp@2.0.0':
     resolution: {integrity: sha512-llMXd39jtP0HpQLVI37Bf1m2ADlEb35GYSh1SDSLsBhR+5iCxiNGlT31yqbNtVHygHAtMy6dWFERpU2JgufhPg==}
@@ -2149,6 +2157,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  '@lucide/svelte@0.508.0(svelte@5.28.2)':
+    dependencies:
+      svelte: 5.28.2
 
   '@mapbox/node-pre-gyp@2.0.0':
     dependencies:

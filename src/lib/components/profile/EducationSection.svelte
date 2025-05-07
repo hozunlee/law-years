@@ -4,6 +4,10 @@
 	import { Input } from '$lib/components/ui/input'
 
 	const { profile, addEducation, updateEducation, removeEducation } = profileStore
+
+	function getValue(e: Event) {
+		return (e.target as HTMLInputElement)?.value ?? ''
+	}
 </script>
 
 <div class="space-y-2">
@@ -14,21 +18,29 @@
 					<Input
 						type="text"
 						value={education.school}
-						onchange={(e) => updateEducation(education.id, { school: e.target.value })}
+						onchange={(e) => updateEducation(education.id, { school: getValue(e) })}
 						placeholder="학교/기관명"
 					/>
 					<Input
 						type="text"
 						value={education.degree}
-						onchange={(e) => updateEducation(education.id, { degree: e.target.value })}
+						onchange={(e) => updateEducation(education.id, { degree: getValue(e) })}
 						placeholder="학위/과정"
 					/>
-					<Input
-						type="text"
-						value={education.period}
-						onchange={(e) => updateEducation(education.id, { period: e.target.value })}
-						placeholder="기간 (예: 2010-2014)"
-					/>
+					<div class="flex space-x-2">
+						<Input
+							type="month"
+							value={education.startDate}
+							onchange={(e) => updateEducation(education.id, { startDate: getValue(e) })}
+							placeholder="입학일"
+						/>
+						<Input
+							type="month"
+							value={education.endDate}
+							onchange={(e) => updateEducation(education.id, { endDate: getValue(e) })}
+							placeholder="졸업일"
+						/>
+					</div>
 					<div class="flex justify-end space-x-2">
 						<Button
 							variant="outline"
@@ -49,9 +61,11 @@
 						{#if education.degree}<div class="text-muted-foreground text-sm">
 								{education.degree}
 							</div>{/if}
-						{#if education.period}<div class="text-muted-foreground text-sm">
-								{education.period}
-							</div>{/if}
+						{#if education.startDate || education.endDate}
+							<div class="text-muted-foreground text-sm">
+								{education.startDate} ~ {education.endDate}
+							</div>
+						{/if}
 					</div>
 					<Button
 						variant="ghost"
@@ -80,9 +94,11 @@
 					{#if education.degree}<div class="text-muted-foreground text-sm">
 							{education.degree}
 						</div>{/if}
-					{#if education.period}<div class="text-muted-foreground text-sm">
-							{education.period}
-						</div>{/if}
+					{#if education.startDate || education.endDate}
+						<div class="text-muted-foreground text-sm">
+							{education.startDate} ~ {education.endDate}
+						</div>
+					{/if}
 				</div>
 			{/if}
 		</div>
