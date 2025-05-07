@@ -4,6 +4,9 @@
 	import { Input } from '$lib/components/ui/input'
 	import { Badge } from '$lib/components/ui/badge'
 
+	import { getValue } from '$lib/components/common'
+	import { get } from 'svelte/store'
+
 	const { profile, addSpecialty, updateSpecialty, removeSpecialty } = profileStore
 </script>
 
@@ -22,7 +25,7 @@
 						<Input
 							type="text"
 							value={specialty.name}
-							onchange={(e) => updateSpecialty(specialty.id, { name: e.target.value })}
+							onchange={(e) => updateSpecialty(specialty.id, { name: getValue(e) })}
 							placeholder="전문 분야"
 						/>
 						<div class="flex justify-end space-x-2">

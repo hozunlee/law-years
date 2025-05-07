@@ -5,6 +5,8 @@
 	import { Textarea } from '$lib/components/ui/textarea'
 	import { profileStore } from '$lib/stores/profile'
 
+	import { getValue } from '$lib/components/common'
+
 	export let profile: LawyerProfile
 
 	const { updateProfile } = profileStore
@@ -70,20 +72,20 @@
 			<Input
 				type="text"
 				value={profile.name}
-				onchange={(e) => updateProfile({ name: e.target.value })}
+				onchange={(e) => updateProfile({ name: getValue(e) })}
 				class="mb-1 text-center text-2xl font-bold"
 				placeholder="이름"
 			/>
 			<Input
 				type="text"
 				value={profile.position}
-				onchange={(e) => updateProfile({ position: e.target.value })}
+				onchange={(e) => updateProfile({ position: getValue(e) })}
 				class="mb-2 text-center"
 				placeholder="직책"
 			/>
 			<Textarea
 				value={profile.motto}
-				onchange={(e) => updateProfile({ motto: e.target.value })}
+				onchange={(e) => updateProfile({ motto: getValue(e) })}
 				class="mb-4 resize-none text-center"
 				placeholder="소개글"
 			/>
@@ -97,19 +99,19 @@
 				<Input
 					type="email"
 					value={profile.email}
-					onchange={(e) => updateProfile({ email: e.target.value })}
+					onchange={(e) => updateProfile({ email: getValue(e) })}
 					placeholder="이메일"
 				/>
 				<Input
 					type="tel"
 					value={profile.phone}
-					onchange={(e) => updateProfile({ phone: e.target.value })}
+					onchange={(e) => updateProfile({ phone: getValue(e) })}
 					placeholder="전화번호"
 				/>
 				<Input
 					type="text"
 					value={profile.address}
-					onchange={(e) => updateProfile({ address: e.target.value })}
+					onchange={(e) => updateProfile({ address: getValue(e) })}
 					placeholder="주소"
 				/>
 			{:else}

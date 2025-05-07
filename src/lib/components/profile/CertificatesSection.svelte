@@ -2,6 +2,7 @@
 	import { profileStore } from '$lib/stores/profile'
 	import { Button } from '$lib/components/ui/button'
 	import { Input } from '$lib/components/ui/input'
+	import { getValue } from '$lib/components/common'
 
 	const { profile, addCertificate, updateCertificate, removeCertificate } = profileStore
 </script>
@@ -14,13 +15,13 @@
 					<Input
 						type="text"
 						value={certificate.name}
-						onchange={(e) => updateCertificate(certificate.id, { name: e.target.value })}
+						onchange={(e) => updateCertificate(certificate.id, { name: getValue(e) })}
 						placeholder="자격증명"
 					/>
 					<Input
 						type="text"
 						value={certificate.issuedBy}
-						onchange={(e) => updateCertificate(certificate.id, { issuedBy: e.target.value })}
+						onchange={(e) => updateCertificate(certificate.id, { issuedBy: getValue(e) })}
 						placeholder="발급 기관"
 					/>
 					<div class="flex justify-end space-x-2">

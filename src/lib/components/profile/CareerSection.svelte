@@ -2,12 +2,9 @@
 	import { profileStore } from '$lib/stores/profile'
 	import { Button } from '$lib/components/ui/button'
 	import { Input } from '$lib/components/ui/input'
+	import { getValue } from '$lib/components/common'
 
 	const { profile, addCareer, updateCareer, removeCareer } = profileStore
-
-	function getValue(e: Event) {
-		return (e.target as HTMLInputElement)?.value ?? ''
-	}
 </script>
 
 <div class="space-y-2">
@@ -32,7 +29,7 @@
 						<Input
 							type="month"
 							value={career.endDate}
-							onchange={(e) => updateCareer(career.id, { endDate: e.target.value })}
+							onchange={(e) => updateCareer(career.id, { endDate: getValue(e) })}
 							placeholder="종료일"
 						/>
 					</div>

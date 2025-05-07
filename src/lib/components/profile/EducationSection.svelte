@@ -2,12 +2,9 @@
 	import { profileStore } from '$lib/stores/profile'
 	import { Button } from '$lib/components/ui/button'
 	import { Input } from '$lib/components/ui/input'
+	import { getValue } from '$lib/components/common'
 
 	const { profile, addEducation, updateEducation, removeEducation } = profileStore
-
-	function getValue(e: Event) {
-		return (e.target as HTMLInputElement)?.value ?? ''
-	}
 </script>
 
 <div class="space-y-2">
